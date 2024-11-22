@@ -1702,7 +1702,7 @@ wrangler workflows trigger <WORKFLOW_NAME> <PARAMS> [OPTIONS]
 wrangler workflows trigger my-workflow '{"hello":"world"}'
 ```
 
-{/*
+{/\*
 
 ### `delete`
 
@@ -1715,7 +1715,7 @@ wrangler workflows delete <WORKFLOW_NAME> [OPTIONS]
 - `WORKFLOW_NAME` <Type text="string" /> <MetaInfo text="required" />
   - The name of a registered Workflow.
 
-*/}
+\*/}
 
 ## `tail`
 
@@ -2591,7 +2591,7 @@ The minimum required Wrangler version to use this command is 3.66.0.
 
 ## `telemetry`
 
-Cloudflare collects anonymous usage data to improve Wrangler. You can learn more about this in our [data policy](https://github.com/cloudflare/workers-sdk/tree/main/telemetry.md).
+Cloudflare collects anonymous usage data to improve Wrangler. You can learn more about this in our [data policy](https://github.com/cloudflare/workers-sdk/tree/main/packages/wrangler/telemetry.md).
 
 You can opt-out of sharing telemetry data at any time using these commands.
 
@@ -2603,12 +2603,6 @@ Disable telemetry collection for Wrangler.
 wrangler telemetry disable
 ```
 
-:::note
-
-You can also disable telemetry collection on a specific project by setting the environment variable `WRANGLER_SEND_METRICS=false`.
-
-:::
-
 ### `enable`
 
 Enable telemetry collection for Wrangler.
@@ -2616,12 +2610,6 @@ Enable telemetry collection for Wrangler.
 ```txt
 wrangler telemetry enable
 ```
-
-:::note
-
-You can also enable telemetry for a specific project by setting the environment variable `WRANGLER_SEND_METRICS=true`.
-
-:::
 
 ### `status`
 

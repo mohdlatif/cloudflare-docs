@@ -3,10 +3,9 @@ pcx_content_type: configuration
 title: System environment variables
 head: []
 description: Local environment variables that can change Wrangler's behavior.
-
 ---
 
-import { Render, Type, MetaInfo } from "~/components"
+import { Render, Type, MetaInfo } from "~/components";
 
 System environment variables are local environment variables that can change Wrangler's behavior. There are three ways to set system environment variables:
 
@@ -20,47 +19,41 @@ System environment variables are local environment variables that can change Wra
 
 Wrangler supports the following environment variables:
 
+- `CLOUDFLARE_ACCOUNT_ID` <Type text="string" /> <MetaInfo text="optional" />
 
+  - The [account ID](/fundamentals/setup/find-account-and-zone-ids/) for the Workers related account.
 
-* `CLOUDFLARE_ACCOUNT_ID` <Type text="string" /> <MetaInfo text="optional" />
+- `CLOUDFLARE_API_TOKEN` <Type text="string" /> <MetaInfo text="optional" />
 
-  * The [account ID](/fundamentals/setup/find-account-and-zone-ids/) for the Workers related account.
+  - The [API token](/fundamentals/api/get-started/create-token/) for your Cloudflare account, can be used for authentication for situations like CI/CD, and other automation.
 
-* `CLOUDFLARE_API_TOKEN` <Type text="string" /> <MetaInfo text="optional" />
+- `CLOUDFLARE_API_KEY` <Type text="string" /> <MetaInfo text="optional" />
 
-  * The [API token](/fundamentals/api/get-started/create-token/) for your Cloudflare account, can be used for authentication for situations like CI/CD, and other automation.
+  - The API key for your Cloudflare account, usually used for older authentication method with `CLOUDFLARE_EMAIL=`.
 
-* `CLOUDFLARE_API_KEY` <Type text="string" /> <MetaInfo text="optional" />
+- `CLOUDFLARE_EMAIL` <Type text="string" /> <MetaInfo text="optional" />
 
-  * The API key for your Cloudflare account, usually used for older authentication method with `CLOUDFLARE_EMAIL=`.
+  - The email address associated with your Cloudflare account, usually used for older authentication method with `CLOUDFLARE_API_KEY=`.
 
-* `CLOUDFLARE_EMAIL` <Type text="string" /> <MetaInfo text="optional" />
+- `WRANGLER_SEND_METRICS` <Type text="string" /> <MetaInfo text="optional" />
 
-  * The email address associated with your Cloudflare account, usually used for older authentication method with `CLOUDFLARE_API_KEY=`.
+  - Options for this are `true` and `false`, the default behavior is `true`. Controls whether Wrangler can send anonymous usage metrics to Cloudflare for this project. You can learn more about this in our [data policy](https://github.com/cloudflare/workers-sdk/tree/main/packages/wrangler/telemetry.md).
 
-* `WRANGLER_SEND_METRICS` <Type text="string" /> <MetaInfo text="optional" />
+- `WRANGLER_HYPERDRIVE_LOCAL_CONNECTION_STRING_<BINDING_NAME>`<Type text="string" /> <MetaInfo text="optional" />
 
-  * Options for this are `true` and `false`, the default behavior is `true`. Controls whether Wrangler can send anonymous usage metrics to Cloudflare for this project. You can learn more about this in our [data policy](https://github.com/cloudflare/workers-sdk/tree/main/telemetry.md).
+  - The [local connection string](/hyperdrive/configuration/local-development/) for your database to use in local development with [Hyperdrive](/hyperdrive/). For example, if the binding for your Hyperdrive is named `PROD_DB`, this would be `WRANGLER_HYPERDRIVE_LOCAL_CONNECTION_STRING_PROD_DB="postgres://user:password@127.0.0.1:5432/testdb"`. Each Hyperdrive is uniquely distinguished by the binding name.
 
-* `WRANGLER_HYPERDRIVE_LOCAL_CONNECTION_STRING_<BINDING_NAME>`<Type text="string" /> <MetaInfo text="optional" />
+- `CLOUDFLARE_API_BASE_URL` <Type text="string" /> <MetaInfo text="optional" />
 
-  * The [local connection string](/hyperdrive/configuration/local-development/) for your database to use in local development with [Hyperdrive](/hyperdrive/). For example, if the binding for your Hyperdrive is named `PROD_DB`, this would be `WRANGLER_HYPERDRIVE_LOCAL_CONNECTION_STRING_PROD_DB="postgres://user:password@127.0.0.1:5432/testdb"`. Each Hyperdrive is uniquely distinguished by the binding name.
+  - The default value is `"https://api.cloudflare.com/client/v4"`.
 
-* `CLOUDFLARE_API_BASE_URL` <Type text="string" /> <MetaInfo text="optional" />
+- `WRANGLER_LOG` <Type text="string" /> <MetaInfo text="optional" />
 
-  * The default value is `"https://api.cloudflare.com/client/v4"`.
+  - Options for Logging levels are `"none"`, `"error"`, `"warn"`, `"info"`, `"log"` and `"debug"`. Levels are case-insensitive and default to `"log"`. If an invalid level is specified, Wrangler will fallback to the default.
 
-* `WRANGLER_LOG` <Type text="string" /> <MetaInfo text="optional" />
+- `FORCE_COLOR` <Type text="string" /> <MetaInfo text="optional" />
 
-  * Options for Logging levels are `"none"`, `"error"`, `"warn"`, `"info"`, `"log"` and `"debug"`. Levels are case-insensitive and default to `"log"`. If an invalid level is specified, Wrangler will fallback to the default.
-
-* `FORCE_COLOR` <Type text="string" /> <MetaInfo text="optional" />
-
-  * By setting this to `0`, you can disable Wrangler's colorised output, which makes it easier to read with some terminal setups. For example, `FORCE_COLOR=0`.
-
-
-
-
+  - By setting this to `0`, you can disable Wrangler's colorised output, which makes it easier to read with some terminal setups. For example, `FORCE_COLOR=0`.
 
 ## Example `.env` file
 
@@ -79,8 +72,8 @@ WRANGLER_LOG=debug
 
 The following variables are deprecated. Use the new variables listed above to prevent any issues or unwanted messaging.
 
-* `CF_ACCOUNT_ID`
-* `CF_API_TOKEN`
-* `CF_API_KEY`
-* `CF_EMAIL`
-* `CF_API_BASE_URL`
+- `CF_ACCOUNT_ID`
+- `CF_API_TOKEN`
+- `CF_API_KEY`
+- `CF_EMAIL`
+- `CF_API_BASE_URL`
