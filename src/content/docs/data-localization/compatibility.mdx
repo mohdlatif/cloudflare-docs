@@ -59,7 +59,7 @@ The table below provides a summary of the Data Localization Suite product's beha
 
 | Product                      | Geo Key Manager | Regional Services | Customer Metadata Boundary |
 | ---------------------------- | --------------- | ----------------- | -------------------------- |
-| Cloudflare Images            | ⚫️              | ✘                 | 🚧 [^35]                    |
+| Cloudflare Images            | ⚫️              | ✅ [^36]          | 🚧 [^35]                    |
 | Cloudflare Pages             | ✘               | ✅ [^11]          | 🚧 [^1]                   |
 | Durable Objects              | ⚫️              | ✅ [^7]           | 🚧 [^1]                   |
 | Email Routing                | ⚫️              | ⚫️                | ✅                        |
@@ -68,7 +68,7 @@ The table below provides a summary of the Data Localization Suite product's beha
 | Stream                       | ⚫️              | ✘                 | 🚧 [^1]                    |
 | Workers (deployed on a Zone) | ✅              | ✅                | 🚧 [^1]                   |
 | Workers KV                   | ⚫️              | ✘                 | ✅ [^34]                   |
-| Workers.dev                  | ✘               | ✘                 | ✘                         |
+| Workers.dev                  | ✘              | ✘                 | ✘                         |
 
 
 ***
@@ -140,3 +140,4 @@ The table below provides a summary of the Data Localization Suite product's beha
 [^33]: [Outgoing zone transfers](/dns/zone-setups/zone-transfers/cloudflare-as-primary/) will carry Earth region proxy IPs, thus making regional service dysfunctional when non-Cloudflare nameservers respond to the DNS queries.
 [^34]: Jurisdictional Restrictions (storage) for Workers KV pairs is not supported today.
 [^35]: Logs / Analytics not available outside US region when using Customer Metadata Boundary. Jurisdictional Restrictions (storage) options are not supported today.
+[^36]: Only when using a [Custom Domain](/images/manage-images/serve-images/serve-from-custom-domains/) set to a region.
