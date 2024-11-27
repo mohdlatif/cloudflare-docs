@@ -80,34 +80,10 @@ graph LR
 Before you start, make sure you have:
 
 - A Cloudflare account. If you do not have one, [sign up](https://dash.cloudflare.com/sign-up/workers-and-pages) before continuing.
-- Wrangler CLI installed (`npm install -g wrangler`)
 - [Bun](https://bun.sh/) installed on your machine.
 - Basic familiarity with TypeScript and React.
 - A text editor or IDE of your choice.
 
-:::note
-
-If you haven't installed Wrangler yet, you can do so using any of these package managers:
-
-```bash
-
-npm install -g wrangler
-
-# or
-
-bun add -g wrangler
-
-# or
-
-yarn global add wrangler
-
-# or
-
-pnpm add -g wrangler
-
-```
-
-:::
 
 ## 1. Set up your development environment
 
@@ -133,7 +109,7 @@ Add the necessary packages to your project:
 
 ```sh
 bun add @cloudflare/pages-plugin-vercel-og autoprefixer postcss-cli react react-dom tailwindcss
-bun add -d @cloudflare/workers-types @types/bun @types/react @types/react-dom @vercel/og
+bun add -d @cloudflare/workers-types @types/bun @types/react @types/react-dom @vercel/og wrangler
 ```
 
 </TabItem> <TabItem label="npm">
