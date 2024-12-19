@@ -21,25 +21,25 @@ import { PackageManagers, Render } from "~/components";
 
 Social media thrives on compelling visuals. With Cloudflare Workers, you can effortlessly generate dynamic Open Graph (OG) images that grab attention and boost platform performance. In this tutorial, you'll learn how to create a customizable OG image generator powered by serverless edge computing. Cloudflare Workers enable you to deliver blazing-fast visuals globally, ensuring a seamless experience for your users. Let's dive in to see how you can take your OG images to the next level with Cloudflare Workers.
 
-What you'll accomplish:
+What you will accomplish:
 
     - Dynamically create stunning OG images using React and Tailwind CSS.
     - Optimize performance with built-in caching.
-    - Customize visuals with flexible fonts and design options..
+    - Customize visuals with flexible fonts and design options.
 
-By the end, you'll have a robust solution to enhance your social media presence.
+By the end, you will have a robust solution to enhance your social media presence.
 
 GitHub repository: [Generate Dynamic OG Images using Cloudflare Workers](https://github.com/mohdlatif/og-image-generator-cloudflare-worker)
 
 ## Why Use Cloudflare Workers?
 
-Building OG image generators can be challenging, especially when it comes to ensuring global performance, scalability, and speed. This is where Cloudflare Workers excel:
+Building OG image generators can be challenging, especially when it comes to ensuring global performance, scalability, and speed. This is where Cloudflare Workers excel.
 
     - Global Reach: Deliver your images with ultra-low latency, no matter where your users are located.
     - Serverless Simplicity: Focus on building features, not managing infrastructure.
     - Unparalleled Performance: Process and serve requests at the edge for blazing-fast load times.
 
-By leveraging Cloudflare Workers, you get a serverless edge-computing environment that's not only cost-efficient but also perfectly optimized for modern web applications.
+By leveraging Cloudflare Workers, you get a serverless edge-computing environment that is not only cost-efficient but also perfectly optimized for modern web applications.
 
 ## Workflow Overview
 
@@ -51,7 +51,7 @@ When a user requests an OG image, the following happens:
     Image Generated: The image is built using React components styled with Tailwind CSS.
     Response Cached: The final image is returned and cached for future requests.
 
-Here's how the process flows:
+Here is how the process flows:
 
 ```mermaid
 
@@ -67,26 +67,26 @@ graph LR
 
 ### Key Benefits
 
-- **Edge Computing**: Generates images at the edge using Cloudflare Workers
-- **Modern Rendering**: Utilizes Vercel's Satori library for high-quality image generation
-- **Flexible Styling**: Supports both Tailwind CSS and inline styles
-- **Font Versatility**: Multiple font loading strategies for different use cases
-- **Performance Optimized**: Built-in caching and optimization
+- **Edge computing**: Generates images at the edge using Cloudflare Workers
+- **Modern rendering**: Utilizes Vercel's Satori library for high-quality image generation
+- **Flexible styling**: Supports both Tailwind CSS and inline styles
+- **Font versatility**: Multiple font loading strategies for different use cases
+- **Performance optimized**: Built-in caching and optimization
 - **Customizable**: Easy to extend with new styles and font configurations
-- **Developer Friendly**: TypeScript support and modular architecture
+- **Developer friendly**: TypeScript support and modular architecture
 
 ## Before you begin
 
 <Render file="prereqs" product="workers" />
 
-3. [Bun](https://bun.sh/) installed on your machine.
+3. Install [Bun](https://bun.sh/) on your machine.
 4. Basic familiarity with TypeScript and React.
 5. A text editor or IDE of your choice.
 
 
 ## 1. Set up your development environment
 
-First, create a new Cloudflare Workers project using the Hono framework:
+Create a new Cloudflare Workers project using the Hono framework:
 
 <PackageManagers
 	type="create"
@@ -169,13 +169,7 @@ The `type: "module"` field enables ES modules support, and the `--minify` flag i
 
 Update the `tsconfig.json` file with the following configuration:
 
-```json
-
----
-
-filename: tsconfig.json
-
----
+```json title="tsconfig.json"
 {
   "compilerOptions": {
     "target": "ESNext",
@@ -246,24 +240,24 @@ The generator supports four different font loading strategies, each with its own
 
 1. **Google Fonts API** (Recommended for web fonts)
 
-   - Best for: Popular web fonts with dynamic text
+   - Best for popular web fonts with dynamic text
    - Pros: Optimized delivery, wide font selection
    - Cons: Makes HTTP requests to Google Fonts API for each image generation
 
 2. **GitHub-hosted fonts** (Alternative for Google Fonts)
 
-   - Best for: Stable, version-controlled fonts
+   - Best for stable, version-controlled fonts
    - Pros: Direct access to font files
    - Cons: Manual updates needed
 
 3. **Direct URL fonts** (For custom hosted fonts)
 
-   - Best for: Self-hosted or third-party fonts
+   - Best for self-hosted or third-party fonts
    - Pros: Complete control over font sources
    - Cons: Requires hosting infrastructure
 
 4. **Local font files** (For offline/private fonts)
-   - Best for: Custom or licensed fonts
+   - Best for custom or licensed fonts
    - Pros: No external dependencies
    - Cons: Increases Worker bundle size
 
@@ -274,7 +268,7 @@ Choose your strategy based on:
 - Hosting preferences
 - Update frequency
 
-First, create a `fonts` directory inside your `public` folder to store any local font files:
+Create a `fonts` directory inside your `public` folder to store any local font files:
 
 ```bash
 mkdir -p public/fonts
@@ -284,14 +278,7 @@ This directory will store any font files (like `.ttf`, `.otf`) that you want to 
 
 Create a new file for handling different font loading methods:
 
-```typescript
-
----
-
-filename: src/getFonts.ts
-
----
-
+```typescript title="src/getFonts.ts"
 // Example of Google Fonts loading strategy
 export async function googleFont(
     text: string,
@@ -346,14 +333,7 @@ mkdir -p public/images
 
 Create a new file for handling image loading:
 
-```typescript
-
----
-
-filename: src/loadImage.ts
-
----
-
+```typescript title="src/loadImage.ts"
 import { Context } from 'hono';
 
 export async function loadImage(c: Context, imagePath: string): Promise<string | null> {
@@ -399,14 +379,7 @@ Make sure your images are stored in the `public/images` directory and referenced
 
 Create the main image generation handler:
 
-```typescript
-
----
-
-filename: src/og.tsx
-
----
-
+```typescript title="src/og.tsx"
 import { Hono } from 'hono';
 
 import { ImageResponse } from '@cloudflare/pages-plugin-vercel-og/api';
@@ -429,7 +402,7 @@ export default app.get('/', async (c) => {
 
 ## 7. Add visual styles
 
-The OG image generator includes 4 distinct styles that can be selected via the `style` query parameter. The style selection is handled through a simple query parameter in the URL:
+The OG image generator includes four distinct styles that can be selected via the `style` query parameter. The style selection is handled through a simple query parameter in the URL:
 
 ```typescript
 style = 1; // Default professional style
@@ -438,7 +411,7 @@ style = 3; // Corporate brand style
 style = 4; // GitHub profile style
 ```
 
-If no style parameter is provided or an invalid value is used, the generator defaults to Style1. Here's how to use each style:
+If no style parameter is provided or an invalid value is used, the generator defaults to Style 1. Here's how to use each style:
 
 ### Style 1: Professional (Default)
 
@@ -458,7 +431,7 @@ Features:
 
 ![Style 2 Preview](https://img.playbook.com/oy6o1vYtQONp4zKf-W2GjpLLnGg1QMBlhmxZ7-TjGlM/Z3M6Ly9wbGF5Ym9v/ay1hc3NldHMtcHVi/bGljLzEwMWYzNWNj/LTUwYzItNDdmYi1h/ZGYxLTFhNjc1YWVh/MmI5NQ)
 
-```url
+```txt
 /og?style=2&mainText=Green%20Summit&description=Sustainable%20Innovation
 ```
 
@@ -472,7 +445,7 @@ Features:
 
 ![Style 3 Preview](https://img.playbook.com/bxEGJ0xzjvwGOpfsW8OqQEwA1tMvhernc1ElS9SF0Tc/Z3M6Ly9wbGF5Ym9v/ay1hc3NldHMtcHVi/bGljL2QwYjQ5ODVj/LTczODItNDZjNS1i/MDAzLTMzOGNmYzdi/YzM2NA)
 
-```url
+```txt
 /og?style=3&mainText=Company%20Update&description=Q4%20Results
 ```
 
@@ -486,7 +459,7 @@ Features:
 
 ![Style 4 Preview](https://img.playbook.com/FqOr8WKk9_thMfSJmn7BTJMSogd3bnQSmKA9T-Nnf1w/Z3M6Ly9wbGF5Ym9v/ay1hc3NldHMtcHVi/bGljLzVhZWY3ZjE0/LWJlNTItNGU3Ny1h/Y2ZlLWMyZTQ5ZTU1/ZjIxYQ)
 
-```url
+```txt
 /og?style=4
 ```
 
@@ -502,15 +475,7 @@ You can combine any style with other parameters like `mainText`, `description`, 
 
 The style selection is implemented using a ternary chain in the code:
 
-```typescript
-
-
----
-
-filename: src/index.ts
-
----
-
+```typescript title="src/index.ts"
 const SocialCardTemplate =
     c.req.query('style') === '2'
         ? Style2()
@@ -523,14 +488,7 @@ const SocialCardTemplate =
 
 This implementation allows for easy addition of new styles in the future by simply adding new conditions to the chain and corresponding style components.
 
-```typescript
-
----
-
-filename: src/og.tsx
-
----
-
+```typescript title="src/og.tsx"
 function Style1() {
 
   return (
@@ -558,14 +516,7 @@ Enable caching to:
 
 Here's how to implement caching with customizable durations:
 
-```typescript
-
----
-
-filename: src/index.ts
-
----
-
+```typescript title="src/index.ts"
 import { Hono } from 'hono';
 
 import { cache } from 'hono/cache';
@@ -602,15 +553,7 @@ Make sure to configure appropriate cache durations based on your application's n
 
 Let's create our type definitions to ensure smooth TypeScript integration. Create a new file `src/type.d.ts`:
 
-```typescript
-
----
-
-filename: src/type.d.ts
-
----
-
-
+```typescript title="src/type.d.ts"
 interface CacheStorage {
 	default: Cache;
 }
@@ -639,9 +582,9 @@ declare module '*.ttf' {
 
 ```
 
-These type definitions are crucial for our project:
+These type definitions are crucial for our project because they:
 
-- They enable TypeScript to understand Cloudflare's cache storage
+- Enable TypeScript to understand Cloudflare's cache storage
 - Add proper typing for the Vercel OG image response
 - Allow direct importing of font files (`.woff2`, `.woff`, `.ttf`)
 
@@ -659,9 +602,9 @@ bun run deploy
 
 ## Usage examples
 
-Generate OG images by making GET requests:
+Generate OG images by making `GET` requests:
 
-```url
+```txt
 https://your-worker.workers.dev/og?mainText=Hello%20World&description=A%20dynamic%20OG%20image&style=1
 ```
 
