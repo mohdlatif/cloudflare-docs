@@ -14,7 +14,7 @@ languages:
 spotlight:
   author: Mohammed Abdulatef Al-Musaibeli
   author_bio_link: https://github.com/mohdlatif
-  author_bio_source: github
+  author_bio_source: GitHub
 ---
 
 import { PackageManagers, Render, Tabs, TabItem } from "~/components";
@@ -54,7 +54,7 @@ When a user requests an OG image, the following happens:
 Here is how the process flows:
 
 ```mermaid
-graph LR
+graph TD
     A[User Request] -->|URL Parameters| B[Cloudflare Worker]
     B --> C[Process Content]
     C --> D[Load Fonts]
@@ -77,8 +77,11 @@ graph LR
 <Render file="prereqs" product="workers" />
 
 3. Install [Bun](https://bun.sh/) on your machine.
-4. Basic familiarity with TypeScript and React.
-5. A text editor or IDE of your choice.
+
+You should also have:
+
+- Basic familiarity with TypeScript and React.
+- A text editor or IDE of your choice.
 
 ## 1. Set up your development environment
 
@@ -132,7 +135,7 @@ pnpm add -d @cloudflare/workers-types @types/bun @types/react @types/react-dom @
 
 ## 3. Configure project settings
 
-### package.json configuration
+### Update package.json
 
 Update the `package.json` file to include the type module and deployment scripts:
 
@@ -152,7 +155,7 @@ Update the `package.json` file to include the type module and deployment scripts
 
 The `type: "module"` field enables ES modules support, and the `--minify` flag in the deploy script ensures your Worker code is optimized for production.
 
-### TypeScript configuration
+### Configure TypeScript
 
 Update the `tsconfig.json` file with the following configuration:
 
@@ -201,7 +204,7 @@ Key TypeScript configuration features:
 
 Before starting, ensure your `wrangler.toml` includes these essential configurations:
 
-```toml
+```toml title="wrangler.toml"
 compatibility_date = "2024-11-06"
 compatibility_flags = [ "nodejs_compat_v2" ]
 assets = { directory = "public",  binding = "ASSETS" }
